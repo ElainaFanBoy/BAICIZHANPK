@@ -2,7 +2,7 @@ import mitmproxy.http
 import json
 import os
 from termcolor import cprint
-from trans import translate
+from trans import combined_translate
 import numpy as np
 
 
@@ -19,7 +19,7 @@ def count(str1, str2):
 
 
 def match(word, options):
-    dst = translate(word)
+    dst = combined_translate(word)
     print("翻译结果：", dst)
     scores = [count(opt, dst) for opt in options]
     max_score = max(scores)
@@ -58,4 +58,3 @@ addons = [
 
 if __name__ =='__main__':
     os.system('mitmdump -q -s capture.py')
-    
